@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>칸쵸 소개</title>
+        <style>
+            a:hover{color: rgb(255, 149, 0);}
+            a:active{color: pink;}
+            [data-role="slider"] .item img {
+                width: 100%;
+                height: 100%;
+                object-fit: cover;
+            }
+        </style>
+        <script src="https://code.jquery.com/jquery-3.6.4.js"></script>
+        <script>
+            window.onload = function(){
+                let count = 0;
+                let image = document.getElementById('image');
+                let frames = [
+                    '1.png', '2.png','3.png','4.png','5.png','6.png'
+                ];
+                setInterval(function () {
+                    image.src = frames[count % frames.length];
+                    count = count + 1;
+                }, 1000 / 20);
+                };
+        </script>
+        <script>
+            $(document).ready(function () {
+                let width = $('[data-role="slider"]').attr('data-width');
+                let height = $('[data-role="slider"]').attr('data-height');
+                let count = $('[data-role="slider"] div.item').length;
+    
+                $('[data-role="slider"]').css({
+                    position: 'relative',
+                    overflow: 'hidden',
+                    width: width,
+                    height: height
+                }).find('.container').css({
+                    position: 'absolute',
+                    width: count * width,
+                    overflow: 'hidden'
+                }).find('.item').css({
+                    width: width,
+                    height: height,
+                    float: 'left'
+                });
+    
+                let currentPage = 0;
+                let changePage = function () {
+                    $('[data-role="slider"] > .container').animate({
+                        left: -currentPage * width
+                    }, 500);
+                };
+    
+                $('#left-button').click(function () { 
+                    if (currentPage > 0) {
+                        currentPage = currentPage - 1;
+                        changePage();
+                    }
+                });
+    
+                $('#right-button').click(function () { 
+                    if (currentPage < count - 1) {
+                        currentPage = currentPage + 1;
+                        changePage();
+                    }
+                });
+            });
+        </script>
+    </head>
+    <body>
+        <section>
+            <header>
+                <h1>칸쵸를 소개해요</h1><hr>
+            </header>
+            <article>
+                <img id = 'image'>
+            </article>
+            <nav>
+                <a href="https://www.instagram.com/dpwls_0_0/profilecard/?igsh=MXJqaTR1YnRkZ3QyZg==">칸쵸 주인 인스타그램</a>
+            </nav>
+            <article>
+                <h2>칸쵸 사진</h2>
+            </article>
+            <aside>
+                <div data-role="slider" data-width="300" data-height="300" style="position: relative; overflow: hidden; width: 300px; height: 300px;">
+                    <div class="container" style="position: absolute; width: 500px; overflow: hidden;"> 
+                        <div class="item"><img src="KakaoTalk_20241215_170105101.jpg" alt ='' style="width: 300px; height: 300px; float: left;"></div>
+                        <div class="item"><img src="KakaoTalk_20241215_174413250.jpg" alt ='' style="width: 300px; height: 300px; float: left;"> </div>
+                        <div class="item"><img src="KakaoTalk_20241215_174425465.jpg" alt="" style="width: 300px; height: 300px; float: left;"></div>
+                    </div>
+                </div>
+                <button id="left-button">←</button>
+                <button id="right-button">→</button>
+                <h2>안녕하세요</h2><P>
+                <h4>제 이름은 칸쵸예요</h4>
+                <h4>제 생일은 2022년 5월 11일이에요</h4>
+                <h4>제 가족은 2022년 6월 25일에 생겼어요</h4>
+                <H4>저는 깨물기를 좋아하고 궁디 팡팡을 싫어해요</H4>
+
+
+            </aside>
+            <ul>
+                <h1>칸쵸가 좋아하는 간식</h1>
+                <li>북어</li><hr>
+                <img src="https://image2.lotteimall.com/goods/94/93/52/1578529394_5.jpg/dims/resizemc/550x550/optimize" alt = "" width = 100 height=100>
+                <li>오징어</li><hr>
+                <img src="https://images.pet-friends.co.kr/storage/pet_friends/product/id/a/9/2/3/2/3/e/a92323e6f9a806e044141c47ce86c97b/10000/3bb9df6be24d4210ab16e116e36946c9.jpg" alt = "" width = 100 height=100>
+                <li>가다랑어 포</li><hr>
+                <img src="https://cmprd-content.baemin.com/upload/product/main/c8da3423-1af6-4576-8ad1-c6c00bd57c53.jpg" alt = "" width = 100 height=100>
+            </ul>
+        </section>
+    </body>
+</html>
